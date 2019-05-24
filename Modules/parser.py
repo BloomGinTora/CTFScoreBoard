@@ -14,8 +14,6 @@ class htb:
         '''
         get_user_id(self,username)
 
-        returns an integer
-
         gets the profile id of a user based on their name
         requires an API token
         '''
