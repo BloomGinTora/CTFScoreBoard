@@ -1,2 +1,2 @@
 # CTFScoreBoard
-In Progress
+Put files in Modules in the same directory as ScoreBoard.py
