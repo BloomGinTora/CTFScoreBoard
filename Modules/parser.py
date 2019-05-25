@@ -34,3 +34,37 @@ class htb:
         var1 = list(soup.find_all("td"))[0]
         var2 = str(var1).split(">")
         return var2[1].split("<")[0]
+    
+    
+class rootMe:
+    def __init__(self, username=''):
+        '''
+        Enter username.
+        Might not work for some usernames, specially with spaces and special chars.
+        '''
+        self.username = username
+    def get_rank(self):
+        url = "https://www.root-me.org/{}?lang=en".format(self.username)
+        url2 = "https://www.root-me.org/{}?inc=score&lang=en".format(self.username)
+        check = requests.get(url2)
+        r = requests.get(url)
+        '''
+        Check if user is on scoreboard :
+        '''
+        soupcheck = BeautifulSoup(check.content, 'html.parser')
+        notOnScoreBoardMsg = str(soupcheck.find_all("h3")[-1])
+        if notOnScoreBoardMsg == "<h3>This author does not participate to challenges.</h3>":
+            print("User is not on scoreboard yet !")
+            sys.exit()
+        else:
+            pass
+        '''
+        Split to get score :
+        '''
+        soup = BeautifulSoup(r.content, 'html.parser')
+        var1 = soup.find("div", {"class" : "t-body tb-padding"})
+        var2 = str(var1.find_all("li"))
+        var3 = var2.split(">")[9]
+        score = var3.split("<")[0]
+        return score
+
