@@ -9,12 +9,13 @@ HTB = parser.htb(API)
 
 id = HTB.get_userid(user)
 
-rank = HTB.get_rank(id)
+rankHTB = HTB.get_rank(id)
 
-print(rank)
+print(rankHTB)
 
 '''
 ROOT ME
 '''
 rootme = parser.rootMe(username)
-rootme.get_rank()
+rankRM = rootme.get_rank()
+print(rankRM)
